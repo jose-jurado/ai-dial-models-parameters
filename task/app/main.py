@@ -2,6 +2,7 @@ from task.app.client import DialClient
 from task.models.conversation import Conversation
 from task.models.message import Message
 from task.models.role import Role
+from dotenv import load_dotenv
 
 DEFAULT_SYSTEM_PROMPT = "You are an assistant who answers concisely and informatively."
 DIAL_ENDPOINT = "https://ai-proxy.lab.epam.com/openai/deployments/{model}/chat/completions"
@@ -13,6 +14,9 @@ def run(
         print_only_content: bool = False,
         **kwargs
 ) -> None:
+    
+    load_dotenv()
+
     client = DialClient(
         endpoint=DIAL_ENDPOINT,
         deployment_name=deployment_name,
